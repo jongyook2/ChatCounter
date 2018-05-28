@@ -109,7 +109,7 @@ public class DataReaderForTXT {
 						arrayTXT.remove(save-1);
 						tempList=Arrays.asList(saveTemp);
 						arrayTXT.add(save-1,tempList);
-						
+
 					}
 				}   
 			}

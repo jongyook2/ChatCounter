@@ -79,7 +79,7 @@ public class ChatMessageCounter {
 		for (Entry<String, Integer> entry : list)
 		{
 			sortedMap.put(entry.getKey(), entry.getValue());
-			
+
 		}
 
 		return sortedMap;
