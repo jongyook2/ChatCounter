@@ -3,19 +3,30 @@ package edu.handong.csee.java.chatcounter;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Properties;
 
+/**
+ * DataWriter Class saves result to csv file
+ * contains convertToCSV
+ * @author Farmboy
+ *
+ */
 public class DataWriter {
-	public void converToTXT(HashMap<String,Integer> file) throws FileNotFoundException, IOException {
-		
-		FileWriter idCountFile = new FileWriter("C:\\Users\\Farmboy\\Desktop\\HW\\java\\idCount.txt");
-		BufferedWriter out = new BufferedWriter(idCountFile);
+	/**
+	 * convertToCSV method save result of userIDset and frequency to csv file 
+	 * @param file
+	 * @param savePath
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	public void convertToCSV(HashMap<String,Integer> file, String savePath) throws FileNotFoundException, IOException {
+
+		Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(savePath), "EUC-KR"));
 		Iterator<Entry<String, Integer>> it = file.entrySet().iterator();
 		out.write("kakao_id, count\r\n");
 		while(it.hasNext()){

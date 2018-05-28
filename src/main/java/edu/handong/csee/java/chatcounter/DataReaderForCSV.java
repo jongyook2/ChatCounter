@@ -1,11 +1,8 @@
 package edu.handong.csee.java.chatcounter;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.Reader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
@@ -17,6 +14,12 @@ import java.util.Date;
 import java.util.List;
 import org.apache.commons.csv.*;
 
+/**
+ * DataReaderForCSV Class parses to earn desired formats from csv files
+ * contains saveCSV method 
+ * @author Farmboy
+ *
+ */
 public class DataReaderForCSV {
 	List<List<String>> arrayCSV = new ArrayList<List<String>>();
 	List<List<String>> setArrayCSV = new ArrayList<List<String>>();
@@ -24,10 +27,17 @@ public class DataReaderForCSV {
 	DataReader dataReader = new DataReader();
 	DateFormat date1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	DateFormat date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-	public List<List<String>> saveCSV() throws IOException, ParseException {
-		listCSVPath= dataReader.readCSV();
-		int i=0;
-		ArrayList <String> result =new ArrayList<String>();	
+
+	/**
+	 * saveCSV methods parses csv file to date, user, message and returns arrayCSV
+	 * @param path
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	public List<List<String>> saveCSV(String path) throws IOException, ParseException {
+		listCSVPath= dataReader.readCSV(path);
+
 		try {
 			List<String> tempList = new ArrayList <String>();
 			for(String csv:listCSVPath) {
@@ -35,6 +45,7 @@ public class DataReaderForCSV {
 				CSVParser csvParser = new CSVParser(csvReader, CSVFormat.DEFAULT);
 
 				for (CSVRecord csvRecord : csvParser) {
+					if(csvRecord.get(0).contains("Date")) {continue;}
 					String date=csvRecord.get(0);
 					String user=csvRecord.get(1);
 					String message=csvRecord.get(2);
@@ -46,24 +57,10 @@ public class DataReaderForCSV {
 					}
 					String[] tempArrayNew= {user,date,message};
 					tempList=Arrays.asList(tempArrayNew);
-					result.add(csvRecord.get(0).concat(" ").concat(csvRecord.get(1)).concat(" ").concat(csvRecord.get(2)));
-					//System.out.println(tempList);
 					arrayCSV.add(tempList);
 				}
-
 			}
-		
 
-//			for(i=0;i<result.size();i++)
-//				System.out.println(arrayCSV.get(i));
-//
-//			for(List<String> str: arrayCSV) {
-//				if(!setArrayCSV.contains(str)) {
-//					setArrayCSV.add(str);
-//				}
-//			}	
-			PrintWriter out = new PrintWriter("C:\\Users\\Farmboy\\Desktop\\HW\\java\\checkCSV.txt");
-			out.println(arrayCSV);
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}catch(IOException e) {
@@ -75,14 +72,14 @@ public class DataReaderForCSV {
 
 
 
-		
-		
-		
-		
-		
-		
-		
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
 
