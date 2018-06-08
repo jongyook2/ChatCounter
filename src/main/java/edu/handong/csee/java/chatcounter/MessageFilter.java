@@ -24,9 +24,9 @@ public class MessageFilter {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public List<List<String>> sumCSVTXT(String path,List<List<String>> csvData, List<List<String>> txtData) throws IOException, ParseException{
+	public List<List<String>> sumCSVTXT(List<List<String>> csvData, List<List<String>> txtData) throws IOException, ParseException{
 
-		List<List<String>> notRedundantData =new ArrayList<List<String>>();
+		//List<List<String>> notRedundantData =new ArrayList<List<String>>();
 		List<List<String>> sumData = new ArrayList<List<String>>(csvData);
 		sumData.addAll(txtData);
 

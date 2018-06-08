@@ -21,10 +21,10 @@ import java.util.List;
  *
  */
 public class DataReaderForTXT {
-	List<List<String>> arrayTXT = new ArrayList<List<String>>();
-	List<List<String>> setArrayTXT = new ArrayList<List<String>>();
-	ArrayList <String> listTXTPath =new ArrayList <String>();
-	DataReader dataReader = new DataReader();
+	
+	//List<List<String>> setArrayTXT = new ArrayList<List<String>>();
+	
+	//DataReader dataReader = new DataReader();
 	static String date;
 	/**
 	 * saveTXT methods parses txt file to date, user, message and returns arrayTXT
@@ -33,8 +33,8 @@ public class DataReaderForTXT {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public List<List<String>> saveTXT(String path) throws IOException, ParseException {
-		listTXTPath= dataReader.readTXT(path);
+	public synchronized void saveTXT(String txt, List<List<String>> arrayTXT) throws IOException, ParseException {
+		
 		int i=0;
 		BufferedReader txtReader=null;
 		String line="";
@@ -48,7 +48,7 @@ public class DataReaderForTXT {
 
 
 		try {
-			for(String txt:listTXTPath) {
+			
 
 				txtReader = new BufferedReader(new InputStreamReader(new FileInputStream(txt),"UTF-8"));
 				for(i=0; i<3; i++) {
@@ -112,7 +112,7 @@ public class DataReaderForTXT {
 
 					}
 				}   
-			}
+			
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}catch(IOException e) {
@@ -126,6 +126,6 @@ public class DataReaderForTXT {
 				e.printStackTrace();
 			}
 		}
-		return arrayTXT;
+		
 	}
 }

@@ -32,7 +32,7 @@ public class ChatMessageCounter {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public HashMap<String,Integer> countChat(String path,List<List<String>> data) throws IOException, ParseException{
+	public HashMap<String,Integer> countChat(List<List<String>> data) throws IOException, ParseException{
 		MessageFilter messageFilter =new MessageFilter();
 		List<List<String>> sumData=data;
 		HashMap<String, Integer> countID = new HashMap<String, Integer>();

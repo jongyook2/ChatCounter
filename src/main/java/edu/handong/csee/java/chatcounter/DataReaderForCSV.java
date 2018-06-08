@@ -21,10 +21,10 @@ import org.apache.commons.csv.*;
  *
  */
 public class DataReaderForCSV {
-	List<List<String>> arrayCSV = new ArrayList<List<String>>();
-	List<List<String>> setArrayCSV = new ArrayList<List<String>>();
-	ArrayList <String> listCSVPath =new ArrayList <String>();
-	DataReader dataReader = new DataReader();
+	//List<List<String>> arrayCSV = new ArrayList<List<String>>();
+	//List<List<String>> setArrayCSV = new ArrayList<List<String>>();
+	//ArrayList <String> listCSVPath =new ArrayList <String>();
+	//DataReader dataReader = new DataReader();
 	DateFormat date1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	DateFormat date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -35,12 +35,12 @@ public class DataReaderForCSV {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public List<List<String>> saveCSV(String path) throws IOException, ParseException {
-		listCSVPath= dataReader.readCSV(path);
+	public synchronized void saveCSV(String csv, List<List<String>> arrayCSV) throws IOException, ParseException {
+		//listCSVPath= dataReader.readCSV(path);
 
 		try {
 			List<String> tempList = new ArrayList <String>();
-			for(String csv:listCSVPath) {
+			//for(String csv:listCSVPath) {
 				Reader csvReader = Files.newBufferedReader(Paths.get(csv));
 				CSVParser csvParser = new CSVParser(csvReader, CSVFormat.DEFAULT);
 
@@ -59,15 +59,17 @@ public class DataReaderForCSV {
 					tempList=Arrays.asList(tempArrayNew);
 					arrayCSV.add(tempList);
 				}
-			}
+			//}
 
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		return arrayCSV;
+		//return arrayCSV;
 	}
+
+	
 }
 
 
