@@ -18,7 +18,7 @@ public class ThreadCSV implements Runnable{
 	public void run() {
 		try {
 			System.out.println(Thread.currentThread().getName()+"이 시작되었습니다.");
-			//System.out.println("read "+csv);
+			System.out.println("read "+csv);
 			dataReaderForCSV.saveCSV(csv,arrayCSV);
 			
 		

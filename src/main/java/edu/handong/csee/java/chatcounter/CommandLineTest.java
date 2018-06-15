@@ -52,7 +52,7 @@ public class CommandLineTest {
 	 * @throws java.text.ParseException
 	 */
 	public void run(String[] args) throws ParseException, IOException, java.text.ParseException {
-		ArrayList<Thread> threads = new ArrayList<Thread>();
+		//ArrayList<Thread> tTXT = new ArrayList<Thread>();
 		ArrayList <String> listCSVPath =new ArrayList <String>();
 		List<List<String>> arrayCSV = new ArrayList<List<String>>();
 		ArrayList <String> listTXTPath =new ArrayList <String>();
@@ -106,22 +106,24 @@ public class CommandLineTest {
 			threadNum=cmd.getOptionValue("c");
 			int num=Integer.parseInt(threadNum);
 			ExecutorService executorService = Executors.newFixedThreadPool(num);
-			
+		
 			DataReader dataReader = new DataReader();
 			listCSVPath= dataReader.readCSV(path);
+			
 			for(String csv:listCSVPath) {
 				Thread tCSV = new Thread(new ThreadCSV(csv,arrayCSV));
 				//Runnable tCSV = new ThreadCSV(csv,arrayCSV);
-				//executorService.execute(tCSV);
-				Future future = executorService.submit(tCSV);
-				try {
-					future.get();
-					System.out.println("작업처리완료");
-				} catch(InterruptedException e) {
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					e.printStackTrace();
-				}
+				executorService.execute(tCSV);
+				//Future future = executorService.submit(tCSV);
+//				try {
+//					future.get();
+//					System.out.println("작업처리완료");
+//				} catch(InterruptedException e) {
+//					e.printStackTrace();
+//				} catch (ExecutionException e) {
+//					e.printStackTrace();
+//				}
+				//tCSV.join();
 				//tCSV.sleep(100);
 				//tCSV.
 			}
@@ -130,19 +132,19 @@ public class CommandLineTest {
 			for(String txt:listTXTPath) {
 				Thread tTXT = new Thread(new ThreadTXT(txt,arrayTXT));
 				//Runnable tTXT = new Runnable(ThreadTXT(txt,arrayTXT));
-				//executorService.execute(tTXT);
-				
+				executorService.execute(tTXT);
+				//tTXT.join();
 				//tTXT.sleep(100);
 				//System.out.println(txt);
-				Future future = executorService.submit(tTXT);
-				try {
-					future.get();
-					System.out.println("작업처리완료");
-				} catch(InterruptedException e) {
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					e.printStackTrace();
-				}
+//				Future future = executorService.submit(tTXT);
+//				try {
+//					future.get();
+//					System.out.println("작업처리완료");
+//				} catch(InterruptedException e) {
+//					e.printStackTrace();
+//				} catch (ExecutionException e) {
+//					e.printStackTrace();
+//				}
 			}
 				executorService.shutdown();
 			  while(!executorService.isTerminated()) {
@@ -193,7 +195,7 @@ public class CommandLineTest {
 //		        }
 			 
 			  
-			  int i=0;
+		
 			
 		        System.out.println("Files is created at "+savePath);
 		       

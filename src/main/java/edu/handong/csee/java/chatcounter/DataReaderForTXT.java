@@ -25,21 +25,30 @@ public class DataReaderForTXT {
 	//List<List<String>> setArrayTXT = new ArrayList<List<String>>();
 	
 	//DataReader dataReader = new DataReader();
-	static String date;
+	
+	//int count=0;
+	int save;
+	
+	public DataReaderForTXT() {
+		//String date="";
+		int save=0;
+		
+	}
 	/**
 	 * saveTXT methods parses txt file to date, user, message and returns arrayTXT
 	 * @param path
 	 * @return
 	 * @throws IOException
 	 * @throws ParseException
+	 * @throws InterruptedException 
 	 */
-	public synchronized void saveTXT(String txt, List<List<String>> arrayTXT) throws IOException, ParseException {
-		
-		int i=0;
+	public synchronized void saveTXT(String txt, List<List<String>> arrayTXT) throws IOException, ParseException, InterruptedException {
+		System.out.println("메소드 시작");
+		String date="";
+		int i;
 		BufferedReader txtReader=null;
 		String line="";
-		int count=0;
-		int save=0;;
+		
 		String saveMessage="";
 		DateFormat date1 = new SimpleDateFormat("yyyy년 M월 d일");
 		DateFormat date2 = new SimpleDateFormat("yyyy-MM-dd");
@@ -57,6 +66,7 @@ public class DataReaderForTXT {
 				while((line=txtReader.readLine())!=null){
 					List<String> tempList = new ArrayList <String>();
 					line=line.replace("사진","Photo");
+					
 					if(line.contains("---------------")) {
 						String[] tempArray = line.split("---------------", 3);
 						date=tempArray[1];
@@ -80,7 +90,8 @@ public class DataReaderForTXT {
 						tempArrayNew[1]=date.concat(" ").concat(tempArrayNew[1]);
 						tempList=Arrays.asList(tempArrayNew);
 						arrayTXT.add(tempList);
-						count++;
+						//System.out.println(tempList);
+						//count++;
 
 					}
 					else if(line.contains("오후")) {
@@ -93,13 +104,15 @@ public class DataReaderForTXT {
 						dateOrigin1 = date3.parse(tempArrayNew[1]);
 						tempArrayNew[1]=date4.format(dateOrigin1);
 						tempArrayNew[1]=date.concat(" ").concat(tempArrayNew[1]);
+						//System.out.println(tempArrayNew[1]);
 						tempList=Arrays.asList(tempArrayNew);
 						arrayTXT.add(tempList);
-						count++;
+						//System.out.println(tempList);
+						//count++;
 
 					}
 					else {
-						save=count;
+						save = arrayTXT.size();
 						saveMessage=line;
 						String []saveTemp= new String[3];
 						for(i=0;i<3;i++) {
@@ -109,22 +122,16 @@ public class DataReaderForTXT {
 						arrayTXT.remove(save-1);
 						tempList=Arrays.asList(saveTemp);
 						arrayTXT.add(save-1,tempList);
-
+						//System.out.println(arrayTXT.get(save-1));
+						//System.out.println(tempList);
 					}
+					
 				}   
 			
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}catch(IOException e) {
 			e.printStackTrace();
-		}finally {
-			try {
-				if(txtReader !=null) {
-					txtReader.close();
-				}
-			}catch(IOException e) {
-				e.printStackTrace();
-			}
 		}
 		
 	}
