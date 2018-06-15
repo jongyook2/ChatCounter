@@ -43,14 +43,25 @@ public class DataReaderForCSV {
 			for(String csv:listCSVPath) {
 				Reader csvReader = Files.newBufferedReader(Paths.get(csv));
 				CSVParser csvParser = new CSVParser(csvReader, CSVFormat.DEFAULT);
-
+				String tempD, tempM, tempU, temp;
+				tempD=""; tempM=""; tempU=""; temp="";
 				for (CSVRecord csvRecord : csvParser) {
 					if(csvRecord.get(0).contains("Date")) {continue;}
 					String date=csvRecord.get(0);
+					//System.out.println(date);
 					String user=csvRecord.get(1);
 					String message=csvRecord.get(2);
 					message=message.trim();
 					message=message.replace("\n", " ");
+					tempU=user;
+					temp=message;
+					if(!tempD.equals(date) && tempU.equals(user) && tempM.equals(message)) {
+	
+						message=message.concat(date);
+						System.out.println(message);
+					}
+					tempD=date;
+					System.out.println(date);
 					if(!date.contains("Date")) {
 						Date dateOrigin1=date1.parse(date);
 						date=date2.format(dateOrigin1);
@@ -58,6 +69,8 @@ public class DataReaderForCSV {
 					String[] tempArrayNew= {user,date,message};
 					tempList=Arrays.asList(tempArrayNew);
 					arrayCSV.add(tempList);
+					tempM=temp;
+					
 				}
 			}
 
