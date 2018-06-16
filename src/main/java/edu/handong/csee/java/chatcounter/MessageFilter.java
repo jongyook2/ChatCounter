@@ -17,7 +17,7 @@ import java.util.Set;
 public class MessageFilter {
 	/**
 	 * sumCSVTXT method sums two formats file(by each reader) and remove duplicate messages
-	
+
 	 * @param csvData
 	 * @param txtData
 	 * @return
@@ -35,8 +35,6 @@ public class MessageFilter {
 		sumData.clear();
 		sumData.addAll(hs);
 
-		PrintWriter out = new PrintWriter("C:\\Users\\Farmboy\\Desktop\\HW\\java\\checkRD.txt");
-		out.println(sumData);
 		return sumData;
 	}
 }
