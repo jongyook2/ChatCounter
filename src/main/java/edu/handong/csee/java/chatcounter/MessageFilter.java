@@ -17,7 +17,7 @@ import java.util.Set;
 public class MessageFilter {
 	/**
 	 * sumCSVTXT method sums two formats file(by each reader) and remove duplicate messages
-	 * @param path
+	
 	 * @param csvData
 	 * @param txtData
 	 * @return

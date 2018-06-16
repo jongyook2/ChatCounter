@@ -5,6 +5,12 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
+/**
+ * ThreadCSV class interface Runnable class 
+ * when thread starts, run method runs saveCSV method of DataReaderForCSV class
+ * @author Farmboy
+ *
+ */
 public class ThreadCSV implements Runnable{
 	String csv;
 	List<List<String>> arrayCSV;
@@ -12,19 +18,17 @@ public class ThreadCSV implements Runnable{
 	public ThreadCSV(String csv, List<List<String>> arrayCSV) {
 		this.csv=csv;
 		this.arrayCSV=arrayCSV;
-		
 	}
-	@Override
+
+	/** 
+	 * run saveCSV method of DataReaderForCSV class and print thread 
+	 */
 	public void run() {
 		try {
-			System.out.println(Thread.currentThread().getName()+"이 시작되었습니다.");
+			System.out.println(Thread.currentThread().getName()+" start.");
 			System.out.println("read "+csv);
 			dataReaderForCSV.saveCSV(csv,arrayCSV);
-			
-		
-		
-		
-		System.out.println(Thread.currentThread().getName()+"가 종료되었습니다");
-}catch (Exception e) {}
-}
+			System.out.println(Thread.currentThread().getName()+" end");
+		}catch (Exception e) {}
+	}
 }

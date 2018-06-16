@@ -21,59 +21,44 @@ import org.apache.commons.csv.*;
  *
  */
 public class DataReaderForCSV {
-	//List<List<String>> arrayCSV = new ArrayList<List<String>>();
-	//List<List<String>> setArrayCSV = new ArrayList<List<String>>();
-	//ArrayList <String> listCSVPath =new ArrayList <String>();
-	//DataReader dataReader = new DataReader();
 	DateFormat date1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	DateFormat date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 	/**
-	 * saveCSV methods parses csv file to date, user, message and returns arrayCSV
-	 * @param path
-	 * @return
+	 * saveCSV methods parses csv file to date, user, message
 	 * @throws IOException
 	 * @throws ParseException
 	 */
 	public synchronized void saveCSV(String csv, List<List<String>> arrayCSV) throws IOException, ParseException {
-		//listCSVPath= dataReader.readCSV(path);
-		System.out.println("메소드 시작");
+
 		try {
 			List<String> tempList = new ArrayList <String>();
-			//for(String csv:listCSVPath) {
-				Reader csvReader = Files.newBufferedReader(Paths.get(csv));
-				CSVParser csvParser = new CSVParser(csvReader, CSVFormat.DEFAULT);
-				
-				for (CSVRecord csvRecord : csvParser) {
-					if(csvRecord.get(0).contains("Date")) {continue;}
-					String date=csvRecord.get(0);
-					//System.out.println(csvRecord.get(0));
-					String user=csvRecord.get(1);
-					String message=csvRecord.get(2);
-					message=message.trim();
-					message=message.replace("\n", " ");
-									
-					if(!date.contains("Date")) {
-						Date dateOrigin1=date1.parse(date);
-						date=date2.format(dateOrigin1);
-					}	
-					String[] tempArrayNew= {user,date,message};
-					tempList=Arrays.asList(tempArrayNew);
-					arrayCSV.add(tempList);
-					
-					//System.out.println(tempList);
-				}
-			//}
+			Reader csvReader = Files.newBufferedReader(Paths.get(csv));
+			CSVParser csvParser = new CSVParser(csvReader, CSVFormat.DEFAULT);
+
+			for (CSVRecord csvRecord : csvParser) {
+				if(csvRecord.get(0).contains("Date")) {continue;}
+				String date=csvRecord.get(0);
+				String user=csvRecord.get(1);
+				String message=csvRecord.get(2);
+				message=message.trim();
+				message=message.replace("\n", " ");
+
+				if(!date.contains("Date")) {
+					Date dateOrigin1=date1.parse(date);
+					date=date2.format(dateOrigin1);
+				}	
+				String[] tempArrayNew= {user,date,message};
+				tempList=Arrays.asList(tempArrayNew);
+				arrayCSV.add(tempList);
+			}
 
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		//return arrayCSV;
 	}
-
-	
 }
 
 
