@@ -2,9 +2,6 @@ package edu.handong.csee.java.chatcounter;
 import java.io.File;
 import java.util.ArrayList;
 
-
-
-
 /**
  * DataReader Class separates file formats(csv or txt) and save it to the list
  * @author Farmboy
@@ -54,4 +51,4 @@ public class DataReader {
 	}
 }
 
-	
+

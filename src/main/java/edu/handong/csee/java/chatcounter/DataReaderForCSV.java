@@ -56,12 +56,10 @@ public class DataReaderForCSV {
 					tempU=user;
 					temp=message;
 					if(!tempD.equals(date) && tempU.equals(user) && tempM.equals(message)) {
-	
 						message=message.concat(date);
-						System.out.println(message);
 					}
 					tempD=date;
-					System.out.println(date);
+					//System.out.println(date);
 					if(!date.contains("Date")) {
 						Date dateOrigin1=date1.parse(date);
 						date=date2.format(dateOrigin1);
@@ -70,7 +68,7 @@ public class DataReaderForCSV {
 					tempList=Arrays.asList(tempArrayNew);
 					arrayCSV.add(tempList);
 					tempM=temp;
-					
+
 				}
 			}
 

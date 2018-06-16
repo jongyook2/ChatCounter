@@ -25,7 +25,7 @@ public class ChatMessageCounter {
 
 	/**
 	 * This method count chat frequency and return sortIDset(countID,false) 
-	 * ->countID is list of User Id and frequency  
+	 * countID is list of User Id and frequency  
 	 * @param path
 	 * @param data
 	 * @return

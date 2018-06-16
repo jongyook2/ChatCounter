@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  *  DataReaderForTXT Class parses to earn desired formats from txt files
  * contains saveTXT method

@@ -18,7 +18,7 @@ public class ChatFileFilter implements FilenameFilter {
 		this.e=e;
 	}
 	/** 
-	 * boolean method if name ends with e ->return true if not ->return false
+	 * boolean method if name ends with e return true if not return false
 	 * @param dir, name
 	 */
 	public boolean accept(File dir,String name) {

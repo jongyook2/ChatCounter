@@ -1,7 +1,6 @@
 package edu.handong.csee.java.chatcounter;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -35,8 +34,6 @@ public class MessageFilter {
 		sumData.clear();
 		sumData.addAll(hs);
 
-		PrintWriter out = new PrintWriter("C:\\Users\\Farmboy\\Desktop\\HW\\java\\checkRD.txt");
-		out.println(sumData);
 		return sumData;
 	}
 }
